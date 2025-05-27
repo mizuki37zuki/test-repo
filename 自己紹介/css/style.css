@@ -1,0 +1,599 @@
+/* css/style.css */
+:root {
+    --primary-color: #3498DB; /* 明るめのブルー */
+    --secondary-color: #76D7C4; /* ミントグリーン */
+    --accent-color: #5DADE2; /* プライマリーブルーのバリエーション（少し明るめ） */
+    --text-color: #333333;
+    --bg-color: #ffffff;
+    --light-gray-color: #f4f4f4;
+    --border-radius: 8px;
+    --font-primary: 'Noto Sans JP', sans-serif;
+    --font-secondary: 'Open Sans', sans-serif;
+}
+
+/* Basic Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    font-family: var(--font-secondary);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding-top: 70px; /* Offset for fixed header */
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo a {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+header .logo a:hover {
+    color: var(--secondary-color);
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 25px;
+}
+
+header nav ul li a {
+    font-family: var(--font-primary);
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 5px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 5px;
+    transition: all 0.3s linear;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+
+/* Hero Section */
+.hero {
+    background-color: var(--light-gray-color);
+    padding: 80px 0 40px;
+    text-align: center;
+}
+
+.hero-content h2 {
+    font-family: var(--font-primary);
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+    object-fit: cover;
+}
+
+.latest-activity {
+    margin-top: 2rem;
+    background-color: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.latest-activity h3 {
+    font-family: var(--font-primary);
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.latest-activity ul {
+    list-style: none;
+}
+
+.latest-activity ul li {
+    margin-bottom: 0.5rem;
+}
+
+.latest-activity ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.latest-activity ul li a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* General Section Styling */
+.section {
+    padding: 60px 0;
+}
+
+/* Correcting alternating background logic if #about is now the first section after hero */
+#home.hero + #about.section {
+    background-color: var(--bg-color); /* About section should be white */
+}
+#about.section + #works.section {
+    background-color: var(--light-gray-color); /* Works section should be light gray */
+}
+#works.section + #contact.section {
+     background-color: var(--bg-color); /* Contact section should be white */
+}
+/* Fallback for any other odd section if the above specific rules don't apply */
+.section:nth-child(odd):not(#home) { 
+    /* This rule might need adjustment depending on exact final structure if more sections are added/removed */
+     /* background-color: var(--light-gray-color); */ /* Default behavior for odd sections */
+}
+
+
+.section h2 {
+    font-family: var(--font-primary);
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+.section h3 {
+    font-family: var(--font-primary);
+    color: var(--secondary-color); /* Adjusted from --primary-color for better contrast with new section titles */
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* About Section */
+#about .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+#about .profile-image-container {
+    text-align: center;
+}
+
+#about .profile-image {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 50%;
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#about .profile-details ul {
+    list-style: none;
+}
+#about .profile-details ul li {
+    margin-bottom: 0.7rem;
+    font-size: 1.05rem;
+}
+#about .profile-details ul li strong {
+    color: var(--primary-color);
+}
+#about .highlight {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+#about .values-section,
+#about .reason-for-hp,
+#about .interest-focus { /* Added style for the new div */
+    background-color: var(--bg-color);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+/* Ensure that if About section is on light-gray, these sub-sections are white */
+#about.section[style*="background-color: var(--light-gray-color)"] .values-section,
+#about.section[style*="background-color: var(--light-gray-color)"] .reason-for-hp,
+#about.section[style*="background-color: var(--light-gray-color)"] .interest-focus {
+    background-color: var(--bg-color);
+}
+/* Specific styling for the new section in About if needed */
+#about .interest-focus h3 {
+    color: var(--primary-color); /* Or var(--secondary-color) if preferred */
+    border-left: 4px solid var(--accent-color);
+    padding-left: 10px;
+}
+
+
+#about .values-section p,
+#about .reason-for-hp p,
+#about .interest-focus p {
+    margin-bottom: 1rem;
+}
+#about .episode {
+    font-style: italic;
+    color: var(--secondary-color);
+    padding-left: 15px;
+    border-left: 3px solid var(--accent-color);
+}
+
+/* Works Section */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.gallery-item {
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item h4 {
+    font-family: var(--font-primary);
+    color: var(--primary-color);
+    padding: 15px 20px 5px;
+    font-size: 1.2rem;
+}
+
+.gallery-item p {
+    padding: 0 20px 20px;
+    font-size: 0.9rem;
+}
+
+.projects .project-item {
+    background-color: var(--bg-color);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+/* Ensure that if Works section is on light-gray, project items are white */
+#works.section[style*="background-color: var(--light-gray-color)"] .project-item {
+    background-color: var(--bg-color);
+}
+
+
+.projects .project-item h4 {
+    font-family: var(--font-primary);
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 0.7rem;
+}
+.projects .project-item p {
+    margin-bottom: 0.5rem;
+}
+.projects .project-item a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.projects .project-item a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Removed .digital-will-thoughts and .blog-grid, .blog-post-item related styles as section is removed */
+/* If any styles from .digital-will-thoughts are needed for .interest-focus, they should be added to .interest-focus or a common class */
+
+
+/* Contact Section */
+.contact-message {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* .contact-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+} */
+
+@media (min-width: 768px) {
+    .contact-details {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+}
+
+
+.sns-links ul {
+    list-style: none;
+    margin-top: 100px;
+    display: flex;
+    column-gap: 16px;
+    justify-content: center;
+}
+
+.sns-links ul li {
+    margin-bottom: 1rem;
+}
+
+.sns-links ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+.sns-links ul li a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#contact-form div {
+    margin-bottom: 1.2rem;
+}
+
+#contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: var(--font-secondary);
+}
+#contact-form input[type="text"]:focus,
+#contact-form input[type="email"]:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3); /* Updated to match new primary color */
+}
+
+#contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: var(--font-primary);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Footer */
+footer {
+    background-color: var(--text-color);
+    color: var(--light-gray-color);
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px; /* Adjust for smaller header */
+    }
+    header .container {
+        padding: 0 15px;
+    }
+    header nav {
+        display: none; /* Hide nav by default on mobile */
+        position: absolute;
+        top: 60px; /* Height of header */
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        flex-direction: column;
+        padding-bottom: 1rem;
+    }
+    header nav.open {
+        display: flex; /* Show nav when hamburger is clicked */
+    }
+
+    header nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    header nav ul li {
+        margin: 0;
+        text-align: center;
+    }
+
+    header nav ul li a {
+        display: block;
+        padding: 1rem;
+        border-bottom: 1px solid var(--light-gray-color);
+    }
+    header nav ul li a:hover,
+    header nav ul li a.active {
+        color: var(--primary-color);
+        background-color: var(--light-gray-color);
+        border-bottom-color: var(--primary-color);
+    }
+
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    #about .profile-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    #about .profile-image-container {
+        margin-bottom: 20px;
+    }
+    #about .profile-details {
+        text-align: left;
+    }
+
+    .gallery { /* Removed .blog-grid from here */
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 15px;
+    }
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+    header .logo a {
+        font-size: 1.5rem;
+    }
+    .hero-content h2 {
+        font-size: 1.6rem;
+    }
+    .section h2 {
+        font-size: 1.7rem;
+    }
+    .section h3 {
+        font-size: 1.3rem;
+    }
+}
